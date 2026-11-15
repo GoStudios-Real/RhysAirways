@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — Rhys Airways</title>
+<meta name="description" content="From Passenger to Chief Operating Officer — the Rhys Airways 10-rank career ladder, flown and worked on the ground in the Roblox experience.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">RA</span>
+      <span><span class="brand-name">RHYS AIRWAYS</span><br><span class="brand-slogan">YOUR JOURNEY. OUR DESTINATION.</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="book.html">Book Flights</a></li>
+      <li><a href="myflights.html">My Bookings</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="api.html">Booking API</a></li>
+    </ul>
+    <a class="nav-cta" href="book.html">BOOK NOW</a>
+  </div>
+</nav>
+
+<section style="padding-top: 40px;">
+  <div class="container" style="max-width: 980px;">
+    <span class="kicker">Working for the airline</span>
+    <h2 style="margin:8px 0 6px;">Climb the ladder — for real</h2>
+    <p class="sub" style="margin-bottom:22px;">Rhys Airways operates live in Roblox. Training modules, rank exams and on-shift rewards are all handled in the game — this page shows the ladder you can climb.</p>
+
+    <div id="ladder"></div>
+
+    <form id="apply-form" class="booking-panel" style="margin-top:26px;">
+      <h2 style="font-size:18px;">Express interest</h2>
+      <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+        <label class="field">Roblox username<input id="a-user" required placeholder="e.g. RhysPilot01"></label>
+        <label class="field">Email<input id="a-email" type="email" required placeholder="you@example.com"></label>
+        <label class="field" style="grid-column: span 2;">Which role interests you?<select id="a-role"></select></label>
+        <label class="field" style="grid-column: span 2;">Why Rhys Airways?<textarea id="a-why" rows="3" maxlength="500" required placeholder="Tell us what you bring to the crew…"></textarea></label>
+      </div>
+      <button class="btn btn-red btn-block" style="margin-top:12px;" type="submit">Submit Application</button>
+      <p class="sub" style="margin-top:8px;">Applications are stored in your browser only. For the in-game process, play Rhys Airways on Roblox and pass the training modules.</p>
+    </form>
+    <div id="apply-done"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong style="color:#f8fafc">RHYS AIRWAYS</strong> · IATA RAX</div>
+    <div>support@rhysairways.example.com · © <span data-year></span> Rhys Airways Pty Ltd</div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const ladder = document.getElementById("ladder");
+  ladder.innerHTML = RANKS.map((r, i) => `
+    <div class="flight-result" style="margin-top:${i === 0 ? 0 : 10}px;">
+      <div class="brand-mark" style="width:38px; height:38px; font-size:15px; background:${i >= 7 ? 'var(--gold)' : i >= 4 ? 'var(--red)' : 'var(--sky)'}; color:var(--navy);">${i + 1}</div>
+      <div>
+        <div class="flight-times" style="font-size:15px;">${r.name}</div>
+        <div class="flight-route">${r.req}</div>
+      </div>
+      <div class="flight-price" style="min-width:130px;"><span class="pill">${i === 0 ? "START HERE" : i >= 9 ? "EXECUTIVE" : i >= 4 ? "FLIGHT DECK" : "ON THE GROUND"}</span></div>
+    </div>`).join("");
+
+  const roleSel = document.getElementById("a-role");
+  roleSel.innerHTML = RANKS.map(r => `<option>${r.name}</option>`).join("");
+
+  document.getElementById("apply-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const user = document.getElementById("a-user").value.trim();
+    document.getElementById("apply-done").innerHTML = `<div class="notice notice-sky" style="margin-top:14px;">G'day ${user.replace(/</g, "&lt;")} — application received! A crew member will reach out in-game, or find us at the Rhys Airways terminal. Uniform and briefing provided.</div>`;
+    window.showToast("Application sent. Welcome aboard!");
+    e.target.reset();
+  });
+</script>
+</body>
+</html>

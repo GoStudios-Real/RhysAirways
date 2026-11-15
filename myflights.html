@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Bookings — Rhys Airways</title>
+<meta name="description" content="Look up your Rhys Airways booking with your PNR and email. View or cancel your e-ticket.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">RA</span>
+      <span><span class="brand-name">RHYS AIRWAYS</span><br><span class="brand-slogan">YOUR JOURNEY. OUR DESTINATION.</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="book.html">Book Flights</a></li>
+      <li><a href="myflights.html">My Bookings</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="api.html">Booking API</a></li>
+    </ul>
+    <a class="nav-cta" href="book.html">BOOK NOW</a>
+  </div>
+</nav>
+
+<section style="padding-top: 40px;">
+  <div class="container" style="max-width: 880px;">
+    <span class="kicker">Manage booking</span>
+    <h2 style="margin:8px 0 16px;">My Bookings</h2>
+
+    <form id="lookup-form" class="booking-panel">
+      <div class="form-grid" style="grid-template-columns: 1fr 1fr auto;">
+        <label class="field">PNR / Booking reference<input id="l-pnr" required placeholder="e.g. K7Q2MX" maxlength="6" style="text-transform:uppercase; letter-spacing:0.2em; font-weight:800;"></label>
+        <label class="field">Email used to book<input id="l-email" required type="email" placeholder="you@example.com"></label>
+        <div style="display:flex; align-items:end;"><button class="btn btn-sky" type="submit" style="height:46px;">Find Booking</button></div>
+      </div>
+    </form>
+
+    <div id="lookup-result" style="margin-top:18px;"></div>
+
+    <div class="notice" style="margin-top: 26px;">Bookings made on this device are stored locally in your browser. Bookings made in the Rhys Airways Roblox experience are stored on your account — check the “My Tickets” tab in-game. This portal does not yet merge the two.</div>
+
+    <h2 style="font-size:20px; margin:28px 0 10px;">Bookings on this device</h2>
+    <div id="device-bookings"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong style="color:#f8fafc">RHYS AIRWAYS</strong> · IATA RAX</div>
+    <div>support@rhysairways.example.com · © <span data-year></span> Rhys Airways Pty Ltd</div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  function renderDeviceList() {
+    const list = RhysBookings.all();
+    $("device-bookings").innerHTML = list.length
+      ? list.map(b => `<div class="flight-result"><div>
+          <div class="flight-times">${b.flight} · ${b.route} <span style="color:var(--grey); font-size:12px">→ ${esc(b.city)}</span></div>
+          <div class="flight-route">${b.date} ${b.depart} · ${b.cabin.toUpperCase()} · ${b.pax} pax · PNR <b style="color:var(--gold)">${b.pnr}</b></div>
+        </div><div class="flight-price">${currency(b.total)}<br><button class="btn btn-ghost" style="margin-top:6px; padding:6px 12px; font-size:11px;" data-cancel="${b.pnr}">Cancel</button></div></div>`).join("")
+      : '<p class="sub">No bookings on this device yet. <a href="book.html" style="color:var(--sky-light)">Book your first flight →</a></p>';
+  }
+
+  $("lookup-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const b = RhysBookings.find($("l-pnr").value, $("l-email").value);
+    $("lookup-result").innerHTML = b
+      ? `<div class="card" style="max-width:560px;"><span class="pill">CONFIRMED</span>
+          <h2 style="margin:10px 0 4px; font-size:22px;">${b.flight} to ${esc(b.city)}</h2>
+          <p class="sub">${b.date} · departs ${b.depart} · ${b.cabin.toUpperCase()} · ${b.pax} passenger(s)</p>
+          <p style="margin-top:10px;">Passenger: <b>${esc(b.name)}</b> · Total paid: <b style="color:var(--gold)">${currency(b.total)}</b></p>
+          <p style="margin-top:6px;">PNR: <span class="mono" style="display:inline-block; padding:4px 10px;">${b.pnr}</span> · Aircraft: ${esc(b.aircraft)}</p>
+        </div>`
+      : '<div class="notice">No booking matched those details. Check the PNR and the email you used.</div>';
+  });
+
+  $("device-bookings").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-cancel]");
+    if (!btn) return;
+    if (RhysBookings.cancel(btn.getAttribute("data-cancel"))) { window.showToast("Booking cancelled — refund to the original payment method."); renderDeviceList(); }
+  });
+
+  renderDeviceList();
+</script>
+</body>
+</html>

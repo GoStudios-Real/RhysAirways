@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Flight — Rhys Airways</title>
+<meta name="description" content="Book Rhys Airways flights from Perth online: pick your destination, date, cabin and passengers. Instant confirmation with your PNR and e-ticket.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">RA</span>
+      <span><span class="brand-name">RHYS AIRWAYS</span><br><span class="brand-slogan">YOUR JOURNEY. OUR DESTINATION.</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="book.html">Book Flights</a></li>
+      <li><a href="myflights.html">My Bookings</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="api.html">Booking API</a></li>
+    </ul>
+    <a class="nav-cta" href="book.html">BOOK NOW</a>
+  </div>
+</nav>
+
+<section style="padding-top: 36px;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Online booking</span>
+        <h2>Book your seat</h2>
+        <p class="sub">Fares in AUD for web bookings. Pay with Rhys Credits in-game, or hold a seat here and pay at the desk.</p>
+      </div>
+    </div>
+
+    <form id="search-form" class="booking-panel">
+      <div class="form-grid">
+        <label class="field">From
+          <select id="f-origin" disabled><option>Perth (PER) — Perth International</option></select>
+        </label>
+        <label class="field">To
+          <select id="f-dest" required></select>
+        </label>
+        <label class="field">Date
+          <input id="f-date" type="date" required>
+        </label>
+        <label class="field">Passengers
+          <select id="f-pax">1..6</select>
+        </label>
+        <label class="field">Cabin
+          <select id="f-cabin"></select>
+        </label>
+        <label class="field" style="grid-column: span 2;">Promotion code
+          <input id="f-promo" type="text" placeholder="e.g. RHYS10 — optional" maxlength="12">
+        </label>
+        <div style="display:flex; align-items:end;">
+          <button type="submit" class="btn btn-red btn-block" style="height:46px;">Search Flights</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="results" style="margin-top: 22px;"></div>
+
+    <!-- passenger details + confirmation get injected here -->
+    <div id="confirm"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong style="color:#f8fafc">RHYS AIRWAYS</strong> · IATA RAX · Callsign “RHYS AIR”</div>
+    <div>support@rhysairways.example.com · © <span data-year></span> Rhys Airways Pty Ltd</div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/book.js"></script>
+</body>
+</html>

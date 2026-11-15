@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destinations — Rhys Airways</title>
+<meta name="description" content="Sydney, Melbourne, Brisbane, Adelaide, Bali, Singapore and London — every Rhys Airways route from Perth, with fares, flight times and mileage.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">RA</span>
+      <span><span class="brand-name">RHYS AIRWAYS</span><br><span class="brand-slogan">YOUR JOURNEY. OUR DESTINATION.</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="book.html">Book Flights</a></li>
+      <li><a href="myflights.html">My Bookings</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="api.html">Booking API</a></li>
+    </ul>
+    <a class="nav-cta" href="book.html">BOOK NOW</a>
+  </div>
+</nav>
+
+<section style="padding-top: 40px;">
+  <div class="container">
+    <span class="kicker">Route map</span>
+    <h2 style="margin:8px 0 18px;">Seven destinations, one Sunburnt gateway</h2>
+    <div class="grid grid-3" id="route-cards"></div>
+    <div class="notice notice-sky" style="margin-top:22px;">All fares one-way in AUD unless booked in-game, where Rhys Credits are used. London fares include a complimentary glass of sparkling to celebrate making it to 40,000 ft.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong style="color:#f8fafc">RHYS AIRWAYS</strong> · IATA RAX</div>
+    <div>support@rhysairways.example.com · © <span data-year></span> Rhys Airways Pty Ltd</div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById("route-cards").innerHTML = ROUTES.map(r => `
+    <article class="card" id="${r.id}">
+      <div class="card-code">${r.id}</div>
+      <div class="card-city">${r.city} — ${r.country}</div>
+      <div class="card-meta">${r.airport}<br>Flight time ${r.flightTime} · ${r.miles.toLocaleString()} miles · ${r.tz}</div>
+      <div class="card-fare">$${r.fare.toFixed(0)} <small>one-way</small></div>
+      <a class="btn btn-sky btn-block" style="margin-top:12px;" href="book.html">Book ${r.id} →</a>
+    </article>`).join("");
+</script>
+</body>
+</html>
