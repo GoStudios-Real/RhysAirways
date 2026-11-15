@@ -81,6 +81,18 @@
       RhysBookings.add(booking);
       renderTicket(booking);
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+
+      const cfg = window.RHYS_DISPATCH || {};
+      if (cfg.token) {
+        fetch(`https://api.github.com/repos/${cfg.repo}/dispatches`, {
+          method: "POST",
+          headers: { "Accept": "application/vnd.github+json", "Authorization": "Bearer " + cfg.token },
+          body: JSON.stringify({ event_type: "rhys-booking", client_payload: { route: route.id, date: booking.date, passengers: booking.pax, cabin: booking.cabin, name: booking.name, email: booking.email, flight: booking.flight, depart: booking.depart, pnr: booking.pnr } }),
+        }).then((r) => window.showToast(r.status === 204 ? "Booking synced to Rhys Airways servers." : "Saved locally; server sync failed (" + r.status + ")."))
+          .catch(() => window.showToast("Saved locally; server unreachable."));
+      } else {
+        window.showToast("Demo mode — booking stored in your browser. See README for enabling the real backend.");
+      }
     });
   });
 

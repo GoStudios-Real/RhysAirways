@@ -1,0 +1,31 @@
+name: Rhys Airways booking API backend
+
+on:
+  repository_dispatch:
+    types: [rhys-booking]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rhys-booking
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate and record booking
+        env:
+          PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+        run: python3 scripts/record_booking.py
+
+      - name: Commit booking record
+        run: |
+          git config user.name "rhys-booking-bot"
+          git config user.email "booking-bot@rhysairways.example.com"
+          git add data/bookings
+          git commit -m "booking: ${{ github.event.client_payload.pnr }}" || exit 0
+          git push

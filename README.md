@@ -52,6 +52,21 @@ Static site — no build step. Serve locally:
 python -m http.server --directory website 8080
 ```
 
+## Real backend (GitHub Actions)
+
+Bookings are **really stored** by this repo's `booking-api.yml` workflow:
+1. The site fires a `repository_dispatch` (event `rhys-booking`) with the booking payload.
+2. The workflow validates the payload (`scripts/record_booking.py`) and commits `data/bookings/<PNR>.json`.
+3. Any device can read the booking at `https://raw.githubusercontent.com/GoStudios-Real/RhysAirways/main/data/bookings/<PNR>.json` — `myflights.html` does this automatically.
+
+To enable **server sync from the public site**, create a fine-grained PAT:
+- Settings → Developer settings → Fine-grained tokens → `RhysAirways site`
+- Repository access: **only** `GoStudios-Real/RhysAirways`
+- Permissions: **Actions: Read and write** (nothing else)
+- Paste it into `js/config.js` (`token: "..."`) and commit.
+
+Until then the site runs in demo mode (localStorage only). The PNR/barcode/e-ticket work either way.
+
 ## Deploy
 Push to `main` — `.github/workflows/pages.yml` publishes `website/` to GitHub Pages.
 Repo Settings → Pages → Source: **GitHub Actions**.

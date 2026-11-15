@@ -58,6 +58,7 @@
   </div>
 </footer>
 
+<script src="js/config.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 <script>
@@ -74,15 +75,28 @@
       : '<p class="sub">No bookings on this device yet. <a href="book.html" style="color:var(--sky-light)">Book your first flight →</a></p>';
   }
 
-  $("lookup-form").addEventListener("submit", (e) => {
+  async function serverLookup(pnr) {
+    const cfg = window.RHYS_DISPATCH || {};
+    const repo = cfg.repo || "GoStudios-Real/RhysAirways";
+    try {
+      const r = await fetch(`https://raw.githubusercontent.com/${repo}/main/data/bookings/${encodeURIComponent(pnr.toUpperCase())}.json`, { cache: "no-store" });
+      if (!r.ok) return null;
+      return await r.json();
+    } catch { return null; }
+  }
+
+  $("lookup-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const b = RhysBookings.find($("l-pnr").value, $("l-email").value);
+    const pnr = $("l-pnr").value.trim().toUpperCase();
+    const local = RhysBookings.find(pnr, $("l-email").value);
+    const remote = local ? null : await serverLookup(pnr);
+    const b = local || (remote ? { ...remote, total: null, cabin: remote.cabin, pax: remote.passengers, city: remote.route, aircraft: "(see itinerary)", fare: null } : null);
     $("lookup-result").innerHTML = b
-      ? `<div class="card" style="max-width:560px;"><span class="pill">CONFIRMED</span>
-          <h2 style="margin:10px 0 4px; font-size:22px;">${b.flight} to ${esc(b.city)}</h2>
-          <p class="sub">${b.date} · departs ${b.depart} · ${b.cabin.toUpperCase()} · ${b.pax} passenger(s)</p>
-          <p style="margin-top:10px;">Passenger: <b>${esc(b.name)}</b> · Total paid: <b style="color:var(--gold)">${currency(b.total)}</b></p>
-          <p style="margin-top:6px;">PNR: <span class="mono" style="display:inline-block; padding:4px 10px;">${b.pnr}</span> · Aircraft: ${esc(b.aircraft)}</p>
+      ? `<div class="card" style="max-width:560px;"><span class="pill">CONFIRMED${remote ? " · SERVER" : ""}</span>
+          <h2 style="margin:10px 0 4px; font-size:22px;">${b.flight} to ${esc(b.city || b.route)}</h2>
+          <p class="sub">${b.date} · departs ${b.depart} · ${String(b.cabin).toUpperCase()} · ${b.pax} passenger(s)</p>
+          <p style="margin-top:10px;">Passenger: <b>${esc(b.name)}</b>${b.total ? ` · Total paid: <b style="color:var(--gold)">${currency(b.total)}</b>` : ""}</p>
+          <p style="margin-top:6px;">PNR: <span class="mono" style="display:inline-block; padding:4px 10px;">${b.pnr}</span> · Aircraft: ${esc(b.aircraft || "-")}</p>
         </div>`
       : '<div class="notice">No booking matched those details. Check the PNR and the email you used.</div>';
   });
@@ -97,3 +111,4 @@
 </script>
 </body>
 </html>
+

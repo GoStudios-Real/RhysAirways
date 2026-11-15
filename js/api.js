@@ -46,10 +46,20 @@
       const r = ROUTES.find(x => x.id === routeId);
       if (!r) { print({ status: 404, code: "route_not_found", message: "Unknown route " + routeId }); return; }
       const pnr = bookingRef(routeId + Date.now());
+      const cfg = window.RHYS_DISPATCH || {};
+      if (cfg.token) {
+        fetch(`https://api.github.com/repos/${cfg.repo}/dispatches`, {
+          method: "POST",
+          headers: { "Accept": "application/vnd.github+json", "Authorization": "Bearer " + cfg.token },
+          body: JSON.stringify({ event_type: "rhys-booking", client_payload: { route: routeId, date: new Date(Date.now() + 86400000).toISOString().slice(0, 10), passengers: pax, cabin: "economy", name: "API Console", email: "api@rhysairways.example.com", flight: "RAX" + (100 + Math.floor(Math.random() * 880)), depart: "06:00", pnr } }),
+        }).then(resp => print({ endpoint: "POST /v1/bookings", status: resp.status === 204 ? 202 : resp.status, dispatched: resp.status === 204, pnr, note: "Queued to the Rhys Airways booking backend (GitHub Actions). Record will appear at data/bookings/" + pnr + ".json — fetchable via raw.githubusercontent.com." }))
+          .catch(err => print({ endpoint: "POST /v1/bookings", status: 0, code: "network_error", message: String(err) }));
+        return;
+      }
       print({
         endpoint: "POST /v1/bookings",
         status: 201,
-        booking: { pnr, flight: "RAX" + (100 + Math.floor(Math.random() * 880)), route: r.id, to: r.city, passengers: pax, cabin: "economy", total_aud: r.fare * pax, status: "CONFIRMED", note: "Demo booking — persisted client-side only." },
+        booking: { pnr, flight: "RAX" + (100 + Math.floor(Math.random() * 880)), route: r.id, to: r.city, passengers: pax, cabin: "economy", total_aud: r.fare * pax, status: "CONFIRMED", note: "Demo booking — set a dispatch token in js/config.js to hit the real backend." },
       });
       return;
     }
