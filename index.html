@@ -3,17 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rhys Airways — Your Journey. Our Destination. | Book Flights Perth</title>
-<meta name="description" content="Fly Rhys Airways from Perth to Sydney, Melbourne, Brisbane, Adelaide, Bali, Singapore and London. Australian owned, premium economy roleplay airline — book online in seconds.">
+<title>Rhys Airways — Your Journey. Our Destination. | Flights from Perth</title>
+<meta name="description" content="Fly Rhys Airways from Perth: Sydney, Melbourne, Brisbane, Adelaide, Bali, Singapore and London. Book seats online, earn Rhys Credits, climb the careers ladder. A full airline roleplay on Roblox.">
+<meta name="theme-color" content="#061224">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rhys Airways">
+<meta property="og:title" content="Rhys Airways — Your Journey. Our Destination.">
+<meta property="og:description" content="Seven destinations from Perth, a four-aircraft fleet, and careers from Passenger to CEO. The airline roleplay on Roblox.">
+<meta property="og:url" content="https://gostudios-real.github.io/RhysAirways/">
+<meta property="og:image" content="https://gostudios-real.github.io/RhysAirways/assets/rhys-thumbnail-1920x1080.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rhys Airways — Your Journey. Our Destination.">
+<meta name="twitter:description" content="Sydney, Melbourne, Brisbane, Adelaide, Bali, Singapore, London — book your seat today.">
+<meta name="twitter:image" content="https://gostudios-real.github.io/RhysAirways/assets/rhys-thumbnail-1920x1080.jpg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://gostudios-real.github.io/RhysAirways/">
 <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Airline","name":"Rhys Airways","iataCode":"RAX","slogan":"Your Journey. Our Destination.","url":"https://gostudios-real.github.io/RhysAirways/","logo":"https://gostudios-real.github.io/RhysAirways/assets/rhys-icon-512.png","telephone":"+61-8-0000-0000","foundingDate":"2026","founder":{"@type":"Person","name":"Rhys"},"address":{"@type":"PostalAddress","streetAddress":"Terminal 1-2","addressLocality":"Perth","addressRegion":"WA","addressCountry":"AU"}}
+</script>
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" aria-label="Main navigation">
   <div class="container nav-inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark">RA</span>
+      <span class="brand-mark" aria-hidden="true">RA</span>
       <span><span class="brand-name">RHYS AIRWAYS</span><br><span class="brand-slogan">YOUR JOURNEY. OUR DESTINATION.</span></span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu">☰</button>
@@ -21,7 +36,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="destinations.html">Destinations</a></li>
       <li><a href="book.html">Book Flights</a></li>
-      <li><a href="myflights.html">My Bookings</a></li>
+      <li><a href="myflights.html">My Bookings<span class="badge" data-booking-count aria-hidden="true"></span></a></li>
       <li><a href="careers.html">Careers</a></li>
       <li><a href="api.html">Booking API</a></li>
     </ul>
@@ -29,18 +44,28 @@
   </div>
 </nav>
 
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">&nbsp;</div>
+</div>
+
 <header class="hero">
   <div class="container hero-inner">
     <div>
       <span class="kicker">Perth International · Est. 2026</span>
       <h1>Your Journey.<br><span class="accent">Our Destination.</span></h1>
-      <p class="lede">Seven Australian and international destinations, a fleet of four real aircraft, and boarding done the roleplay way — book your seat, earn Rhys Credits, and fly.</p>
+      <p class="lede">Seven Australian and international destinations, a fleet of <strong>four real aircraft</strong>, and boarding done the roleplay way — <strong>book your seat, earn Rhys Credits, and fly.</strong></p>
       <div class="hero-actions">
-        <a class="btn btn-red" href="book.html">Book a Flight</a>
+        <a class="btn btn-red" href="book.html">Book a Flight →</a>
         <a class="btn btn-ghost" href="destinations.html">Explore Destinations</a>
+      </div>
+      <div class="trust">
+        <span class="trust-item"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1l1.7 3.7L12.4 6 8.7 7.7 7 11.4 5.3 7.7 1.6 6l3.7-1.3L7 1z" fill="#f0c878"/></svg> Player-run airline</span>
+        <span class="trust-item"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 8l5 5 5-9" stroke="#7ec4ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Real fleet: A320, 737, 787, A380</span>
+        <span class="trust-item"><svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" stroke="#7ec4ff" stroke-width="1.6" fill="none"/><path d="M7 4v3l2 1.5" stroke="#7ec4ff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg> 24/7 virtual ops</span>
       </div>
     </div>
     <div class="plane-wrap" aria-hidden="true">
+      <div class="hero-ring"></div>
       <!-- Rhys Airways hero aircraft (stylised A380) -->
       <svg class="plane-art" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rhys Airways A380 flying over the ocean">
         <defs>
@@ -51,65 +76,56 @@
             <stop offset="0" stop-color="#061224"/><stop offset="1" stop-color="#12305a"/>
           </linearGradient>
         </defs>
-        <rect width="480" height="260" rx="18" fill="url(#skyg)"/>
+        <rect width="480" height="260" rx="18" fill="url(#skyg)" opacity="0.85"/>
         <circle cx="404" cy="52" r="26" fill="#fdf6e3" opacity="0.9"/>
         <g opacity="0.5" fill="#7ec4ff">
           <circle cx="80" cy="60" r="2.4"/><circle cx="132" cy="34" r="1.8"/><circle cx="210" cy="70" r="2.1"/><circle cx="300" cy="34" r="1.6"/><circle cx="376" cy="120" r="2"/><circle cx="52" cy="130" r="2"/>
         </g>
-        <!-- far wing -->
         <path d="M196 158 L286 128 L300 136 L226 172 Z" fill="#a9b6cc"/>
-        <!-- fuselage -->
         <path d="M30 152 C30 138 52 130 96 130 L330 130 C400 130 442 138 446 152 C442 166 400 174 330 174 L96 174 C52 174 30 166 30 152 Z" fill="url(#fuselage)" stroke="#0b1f3a" stroke-width="2"/>
-        <!-- belly cheatline -->
         <path d="M96 166 L400 166 L388 171 L110 171 Z" fill="#d63031"/>
-        <!-- cockpit windows -->
         <path d="M398 138 L428 140 L430 148 L402 148 Z" fill="#0b1f3a"/>
-        <!-- windows -->
         <g fill="#0b1f3a">
           <circle cx="140" cy="148" r="2.6"/><circle cx="162" cy="148" r="2.6"/><circle cx="184" cy="148" r="2.6"/><circle cx="206" cy="148" r="2.6"/><circle cx="228" cy="148" r="2.6"/><circle cx="250" cy="148" r="2.6"/><circle cx="272" cy="148" r="2.6"/><circle cx="294" cy="148" r="2.6"/><circle cx="316" cy="148" r="2.6"/><circle cx="338" cy="148" r="2.6"/><circle cx="120" cy="142" r="2.3"/>
         </g>
-        <!-- near wing -->
         <path d="M170 176 L96 236 L132 238 L252 178 Z" fill="#dbe3ee" stroke="#0b1f3a" stroke-width="2" stroke-linejoin="round"/>
-        <!-- tail fin -->
         <path d="M64 130 L84 66 L112 66 L104 130 Z" fill="#0b1f3a"/>
         <path d="M74 96 L100 96 L96 108 L70 108 Z" fill="#d63031"/>
-        <!-- horizontal stabiliser -->
         <path d="M58 130 L20 156 L52 156 L84 130 Z" fill="#0b1f3a"/>
-        <!-- logo on tail -->
         <circle cx="88" cy="78" r="9" fill="#3898ec"/>
         <text x="88" y="82" font-size="9" font-weight="900" text-anchor="middle" fill="#061224">RA</text>
-        <!-- engines -->
         <ellipse cx="212" cy="186" rx="16" ry="9" fill="#0b1f3a"/>
         <ellipse cx="300" cy="150" rx="11" ry="6" fill="#39465c"/>
-        <!-- airline name -->
         <text x="240" y="124" font-size="13" font-weight="800" fill="#0b1f3a" letter-spacing="2">RHYS AIRWAYS</text>
       </svg>
     </div>
   </div>
 </header>
 
-<section>
+<section aria-labelledby="departures-heading">
   <div class="container">
     <div class="section-head">
       <div>
-        <h2>Today's departures</h2>
-        <p class="sub">Live-style board — generated from the daily schedule. Always double-check your bay on the in-game departure screens.</p>
+        <span class="eyebrow">Live board</span>
+        <h2 id="departures-heading">Today's departures</h2>
+        <p class="sub">Generated from the daily schedule (<span data-clock>--:--:--</span> AWST). Always double-check your bay on the in-game screens.</p>
       </div>
       <a class="btn btn-sky" href="book.html">Book This Flight</a>
     </div>
     <div class="board" role="table" aria-label="Departures board">
-      <div class="board-title">PERTH INTERNATIONAL — DEPARTURES</div>
+      <div class="board-title"><span>PERTH INTERNATIONAL — DEPARTURES</span><span class="live-dot">LIVE</span></div>
       <div id="board-body"></div>
     </div>
   </div>
 </section>
 
-<section style="padding-top: 0;">
+<section style="padding-top: 0;" aria-labelledby="destinations-heading">
   <div class="container">
     <div class="section-head">
       <div>
-        <h2>Fly seven worlds</h2>
-        <p class="sub">Fares shown are one-way, Economy, Rhys Credits or AUD — pay in-game with Rhys Credits, or use this site to hold your seat.</p>
+        <span class="eyebrow">Route map</span>
+        <h2 id="destinations-heading">Fly seven worlds</h2>
+        <p class="sub">One-way Economy fares in AUD. In-game, pay with Rhys Credits — earn them flying and working shifts.</p>
       </div>
       <a class="btn btn-ghost" href="destinations.html">All Destinations →</a>
     </div>
@@ -117,36 +133,138 @@
   </div>
 </section>
 
-<section style="padding-top: 0;">
+<section style="padding-top: 0;" aria-labelledby="fleet-heading">
   <div class="container">
-    <div class="grid grid-4" style="text-align:center; gap: 0;">
-      <div class="stat"><b>7</b><span>Destinations</span></div>
-      <div class="stat"><b>4</b><span>Aircraft Types</span></div>
-      <div class="stat"><b>10</b><span>Career Ranks</span></div>
-      <div class="stat"><b>24/7</b><span>Roleplay Ops</span></div>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The fleet</span>
+        <h2 id="fleet-heading">Four aircraft. Zero compromises.</h2>
+        <p class="sub">Real aeroplanes on the apron — each with a working cockpit, a 6-abreast cabin and a door you board through.</p>
+      </div>
+    </div>
+    <div class="grid grid-4" id="fleet-cards"></div>
+  </div>
+</section>
+
+<section style="padding-top: 0;" aria-labelledby="faq-heading">
+  <div class="container" style="max-width: 880px;">
+    <span class="eyebrow">Before you fly</span>
+    <h2 id="faq-heading" style="margin: 10px 0 20px;">Questions, answered</h2>
+    <div class="faq">
+      <div class="faq-item open">
+        <button class="faq-q" aria-expanded="true">Is Rhys Airways a real airline?</button>
+        <div class="faq-a">No — it's a roleplay airline inside Roblox. You book seats, board real toolbox aircraft, fly to rebuilt destination airports and earn Rhys Credits. Every rank, from Passenger to CEO, is earned in-game.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How do I book a flight?</button>
+        <div class="faq-a">Pick a destination on this site and we'll hold a seat for you (or book directly in-game from the Flights tab). Fares are charged in Rhys Credits in-game, or shown in AUD here for your convenience. London is 5,000 — so start with Adelaide at 600.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How do I board once booked?</button>
+        <div class="faq-a">Head to your bay (A1–A4) before pushback, walk up to the aircraft and press E at the door. Your boarding pass lives in MY TICKETS — with barcode, seat and gate.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Can I work for the airline?</button>
+        <div class="faq-a">Absolutely. Pass the training quizzes in the Career tab to become Ground Crew, Check-in Agent, Cabin Crew or ATC — each pays RC per shift. Supervisors can promote staff; pilots are appointed by management.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Where does my progress go?</button>
+        <div class="faq-a">Your Rhys Credits, rank, tickets, achievements and flight history persist to your Roblox account across sessions — and your web bookings live in this browser, findable by PNR on the My Bookings page.</div>
+      </div>
     </div>
   </div>
 </section>
 
+<section style="padding-top: 0; padding-bottom: 40px;" aria-labelledby="newsletter-heading">
+  <div class="container" style="max-width: 880px;">
+    <div class="booking-panel" style="display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; padding:26px 28px;">
+      <div>
+        <span class="eyebrow">The Rhys List</span>
+        <h2 id="newsletter-heading" style="font-size:22px; margin-top:6px;">Deals, routes &amp; crew news</h2>
+        <p class="sub">One email a month. No spam, ever — unsubscribe any time.</p>
+      </div>
+      <form id="newsletter-form" class="newsletter" style="margin-top:0;">
+        <label class="field" for="nl-email" style="position:absolute; left:-9999px;">Email address</label>
+        <input id="nl-email" type="email" required placeholder="you@example.com" aria-label="Email address">
+        <button type="submit" class="btn btn-sky">Join</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="grid grid-4" style="text-align:center; gap: 0; border-top: 1px solid var(--border); padding-top: 34px;">
+    <div class="stat"><b>7</b><span>Destinations</span></div>
+    <div class="stat"><b>4</b><span>Aircraft Types</span></div>
+    <div class="stat"><b>10</b><span>Career Ranks</span></div>
+    <div class="stat"><b>24/7</b><span>Roleplay Ops</span></div>
+  </div>
+</div>
+
 <footer>
   <div class="container footer-inner">
-    <div>
-      <strong style="color:#f8fafc">RHYS AIRWAYS</strong> · IATA code RAX · Callsign “RHYS AIR”<br>
-      Perth International Airport, Terminals 1–2, Australia
+    <div class="footer-col">
+      <h4>Rhys Airways</h4>
+      <strong style="color:#f8fafc; letter-spacing:.1em;">RHYS AIRWAYS</strong>
+      <p style="margin-top:8px;">IATA code RAX · Callsign “RHYS AIR”<br>Perth International Airport<br>Terminals 1–2, Australia</p>
     </div>
-    <div>
-      support@rhysairways.example.com<br>
-      <a href="api.html">Booking API for developers</a> · <a href="careers.html">Work for us</a><br>
-      © <span data-year></span> Rhys Airways Pty Ltd — a GoStudios-Real production.
+    <div class="footer-col">
+      <h4>Airline</h4>
+      <ul>
+        <li><a href="book.html">Book Flights</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="myflights.html">My Bookings</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h4>Developers</h4>
+      <ul>
+        <li><a href="api.html">Booking API</a></li>
+        <li><a href="https://github.com/GoStudios-Real/RhysAirways" rel="noopener">GitHub repository</a></li>
+        <li>support@rhysairways.example.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span data-year></span> Rhys Airways Pty Ltd — a GoStudios-Real production.</span>
+    <span>Fictional airline operated for Roblox roleplay. Not affiliated with any real-world carrier.</span>
   </div>
 </footer>
 
+<script src="js/config.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 <script>
+  const FLEET = [
+    { id: "A320", name: "Airbus A320neo", seats: 24, range: "6,300 km", cruise: "Mach 0.79", span: 35.8, color: "#7ec4ff" },
+    { id: "B737", name: "Boeing 737-800", seats: 28, range: "5,400 km", cruise: "Mach 0.78", span: 34.3, color: "#eef2f8" },
+    { id: "B787", name: "Boeing 787-9 Dreamliner", seats: 40, range: "14,000 km", cruise: "Mach 0.85", span: 60.1, color: "#3898ec" },
+    { id: "A380", name: "Airbus A380-800", seats: 72, range: "14,800 km", cruise: "Mach 0.85", span: 79.8, color: "#f0c878" },
+  ];
+  document.getElementById("fleet-cards").innerHTML = FLEET.map(a => `
+    <article class="card fleet-card">
+      <svg class="fleet-silhouette" viewBox="0 0 130 64" aria-hidden="true">
+        <rect width="130" height="64" rx="10" fill="#0b1f3a"/>
+        <path d="M18 34 C18 29 24 27 36 27 L84 27 C104 27 112 30 112 34 C112 38 104 41 84 41 L36 41 C24 41 18 39 18 34 Z" fill="${a.color}"/>
+        <path d="M28 27 L34 10 L44 10 L41 27 Z" fill="#0b1f3a"/>
+        <path d="M58 41 L30 58 L52 58 L74 41 Z" fill="#dbe3ee"/>
+        <path d="M20 30 L12 38 L24 38 L28 30 Z" fill="#0b1f3a"/>
+        <circle cx="102" cy="32" r="1.4" fill="#0b1f3a"/><circle cx="92" cy="32" r="1.4" fill="#0b1f3a"/><circle cx="82" cy="32" r="1.4" fill="#0b1f3a"/><circle cx="72" cy="32" r="1.4" fill="#0b1f3a"/>
+      </svg>
+      <div>
+        <div class="fleet-name">${a.name}</div>
+        <div class="fleet-meta">${a.id} · Code RAX</div>
+        <div class="fleet-stat">
+          <span><b>${a.seats}</b>seats</span>
+          <span><b>${a.range}</b>range</span>
+          <span><b>${a.cruise}</b>cruise</span>
+        </div>
+      </div>
+    </article>`).join("");
+
   document.getElementById("home-routes").innerHTML = ROUTES.map(r => `
-    <a class="card" style="text-decoration:none; color:inherit;" href="destinations.html#${r.id}">
+    <a class="card" href="destinations.html#${r.id}" aria-label="Book ${r.city} — from $${r.fare}">
       <div class="card-code">${r.id}</div>
       <div class="card-city">${r.city}</div>
       <div class="card-meta">${r.airport}</div>

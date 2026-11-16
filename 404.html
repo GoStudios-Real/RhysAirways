@@ -3,18 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061224">
+<meta name="description" content="This route doesn't exist on Rhys Airways. Book a real one — Sydney, Melbourne, Brisbane, Adelaide, Bali, Singapore or London from Perth.">
 <title>404 — Flight Not Found | Rhys Airways</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<section style="min-height:70vh; display:grid; place-items:center; text-align:center;">
-  <div>
-    <div class="kicker">Error 404 · Flight Not Found</div>
-    <h1 style="margin:10px 0;">This route doesn't<br><span class="accent">exist… yet.</span></h1>
-    <p class="lede" style="margin:0 auto;">You may have followed a stale link. Rhys Airways only flies where we have slots.</p>
-    <div class="hero-actions" style="justify-content:center;"><a class="btn btn-red" href="index.html">Return to PER</a><a class="btn btn-ghost" href="book.html">Book a Flight</a></div>
+
+<nav class="nav" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">RA</span>
+      <span><span class="brand-name">RHYS AIRWAYS</span><br><span class="brand-slogan">YOUR JOURNEY. OUR DESTINATION.</span></span>
+    </a>
+    <a class="nav-cta" href="book.html">BOOK NOW</a>
+  </div>
+</nav>
+
+<section class="hero" style="min-height:78vh; display:grid; place-items:center; border-bottom:none; text-align:center;">
+  <div class="container">
+    <span class="kicker" style="justify-content:center;">Error 404 · Flight Not Found</span>
+    <h1 style="margin:14px 0; font-size:clamp(40px,7vw,72px);">This route doesn't<br><span class="accent">exist… yet.</span></h1>
+    <p class="lede" style="margin:0 auto;">Rhys Airways only flies where we have slots — but we've got seven lovely ones to choose from.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn btn-red" href="index.html">Return to PER</a>
+      <a class="btn btn-ghost" href="book.html">Book a Flight</a>
+    </div>
+    <p style="margin-top:36px; font-family:'JetBrains Mono',monospace; color:var(--sky-light); font-size:12px; letter-spacing:.18em;">RAX 404 · NOTHING FILED UNDER THIS FLIGHT NUMBER</p>
   </div>
 </section>
+
 </body>
 </html>

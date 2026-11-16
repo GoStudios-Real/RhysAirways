@@ -5,15 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Bookings — Rhys Airways</title>
 <meta name="description" content="Look up your Rhys Airways booking with your PNR and email. View or cancel your e-ticket.">
+<meta name="theme-color" content="#061224">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rhys Airways">
+<meta property="og:title" content="My Bookings — Rhys Airways">
+<meta property="og:description" content="PNR lookup: view or cancel your Rhys Airways bookings.">
+<link rel="canonical" href="https://gostudios-real.github.io/RhysAirways/myflights.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" aria-label="Main navigation">
   <div class="container nav-inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark">RA</span>
+      <span class="brand-mark" aria-hidden="true">RA</span>
       <span><span class="brand-name">RHYS AIRWAYS</span><br><span class="brand-slogan">YOUR JOURNEY. OUR DESTINATION.</span></span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu">☰</button>
@@ -21,13 +27,17 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="destinations.html">Destinations</a></li>
       <li><a href="book.html">Book Flights</a></li>
-      <li><a href="myflights.html">My Bookings</a></li>
+      <li><a href="myflights.html">My Bookings<span class="badge" data-booking-count aria-hidden="true"></span></a></li>
       <li><a href="careers.html">Careers</a></li>
       <li><a href="api.html">Booking API</a></li>
     </ul>
     <a class="nav-cta" href="book.html">BOOK NOW</a>
   </div>
 </nav>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">&nbsp;</div>
+</div>
 
 <section style="padding-top: 40px;">
   <div class="container" style="max-width: 880px;">
@@ -53,8 +63,32 @@
 
 <footer>
   <div class="container footer-inner">
-    <div><strong style="color:#f8fafc">RHYS AIRWAYS</strong> · IATA RAX</div>
-    <div>support@rhysairways.example.com · © <span data-year></span> Rhys Airways Pty Ltd</div>
+    <div class="footer-col">
+      <h4>Rhys Airways</h4>
+      <strong style="color:#f8fafc; letter-spacing:.1em;">RHYS AIRWAYS</strong>
+      <p style="margin-top:8px;">IATA code RAX · Callsign "RHYS AIR"<br>Perth International Airport<br>Terminals 1–2, Australia</p>
+    </div>
+    <div class="footer-col">
+      <h4>Airline</h4>
+      <ul>
+        <li><a href="book.html">Book Flights</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="myflights.html">My Bookings</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Developers</h4>
+      <ul>
+        <li><a href="api.html">Booking API</a></li>
+        <li><a href="https://github.com/GoStudios-Real/RhysAirways" rel="noopener">GitHub repository</a></li>
+        <li>support@rhysairways.example.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span data-year></span> Rhys Airways Pty Ltd — a GoStudios-Real production.</span>
+    <span>Fictional airline operated for Roblox roleplay. Not affiliated with any real-world carrier.</span>
   </div>
 </footer>
 
